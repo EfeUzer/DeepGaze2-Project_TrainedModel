@@ -16,6 +16,10 @@ dataset = GazeDataset(data_root, person_folders)
 random_sample = random.choice(dataset.data)
 img_path, x_gt, y_gt = random_sample
 
+#Skalierung der Ground-Truth-Koordinaten auf Bildgröße 320x160
+x_gt_scaled = int(min(max(x_gt * (320 / 1920), 0), 319))
+y_gt_scaled = int(min(max(y_gt * (160 / 1080), 0), 159))
+
 # Lade das Bild
 image = cv2.imread(img_path)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
